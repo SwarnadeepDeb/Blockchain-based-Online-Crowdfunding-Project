@@ -1,0 +1,150 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+  }
+  
+  .campaign-details {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .campaign-details h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .campaign-details p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 15px;
+  }
+  
+  .campaign-details p strong {
+    color: #333;
+  }
+  
+  .campaign-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Donate Section */
+  .donate-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+  }
+  
+  .donate-section input {
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+  }
+  
+  .donate-section input:focus {
+    outline: none;
+    border-color: #ff9e44;
+  }
+  
+  .donate-section button {
+    padding: 12px 30px;
+    background-color: #ff9e44;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .donate-section button:hover {
+    background-color: #ff8233;
+  }
+  
+  /* Withdraw Section */
+  .withdraw-section {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .withdraw-section button {
+    padding: 12px 30px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .withdraw-section button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Donators Section */
+  .donators-section {
+    margin-top: 40px;
+  }
+  
+  .donators-section h3 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ff9e44;
+    display: inline-block;
+  }
+  
+  .donators-section ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .donators-section li {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .donators-section li strong {
+    color: #333;
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .campaign-image {
+      height: 300px;
+    }
+  
+    .campaign-details h2 {
+      font-size: 2rem;
+    }
+  
+    .donate-section input {
+      width: 100%;
+    }
+  
+    .donate-section button, .withdraw-section button {
+      width: 100%;
+      padding: 14px;
+    }
+  }
+  
