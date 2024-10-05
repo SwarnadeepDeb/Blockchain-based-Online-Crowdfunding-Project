@@ -149,7 +149,7 @@ const CampaignDetails = ({ campaigns, updateCampaigns, state }) => {
             <p>{campaign.description}</p>
             <p><strong>Goal:</strong> ${campaign.goal}</p>
             <p><strong>Amount Raised:</strong> ${amountRaised}</p>
-            <p><strong>Days Left:</strong> {daysLeft}</p>
+            <p><strong>Days Left:</strong> {daysLeft<0?0:daysLeft}</p>
             
             {!showWithdraw && (
                 <div className="donate-section">

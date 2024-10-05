@@ -59,7 +59,7 @@ const CampaignForm = ({ campaigns, updateCampaigns, state }) => {
             <form className="campaign-form" onSubmit={handleSubmit}>
                 <h2>Create Campaign</h2>
                 <label>
-                    Campaign owner Name:
+                    Campaign owner:
                     <input
                         type="text"
                         name="owner"

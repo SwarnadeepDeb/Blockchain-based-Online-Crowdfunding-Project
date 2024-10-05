@@ -10,14 +10,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    /* padding: 20px; */
     background-color: #1e1e1e;
+    background-color: black;
     color: white;
     position: relative;
   }
   
   .navbar-logo img {
-    height: 50px;
+    width: 100px;
   }
   
   .navbar-menu {

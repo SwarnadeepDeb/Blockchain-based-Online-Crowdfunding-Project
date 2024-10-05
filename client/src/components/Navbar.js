@@ -302,7 +302,7 @@ const Navbar = ({ updateSetState, updateConnected, connected, updateCampaigns })
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <img src="{logo}" alt="Logo" />
+        <img src={logo} alt="Logo" />
       </div>
       <div className={`navbar-menu ${isMenuOpen ? 'open' : ''}`}>
         <div className="navbar-search">
