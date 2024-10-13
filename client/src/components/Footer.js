@@ -1,5 +1,6 @@
-// src/components/Footer.js
+
 import React from 'react';
+import { Link } from "react-router-dom";
 import './Footer.css';
 
 const Footer = () => {
@@ -16,10 +17,10 @@ const Footer = () => {
                 <div className="footer-section">
                     <h2>Links</h2>
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><Link href="/home">Home</Link></li>
+                        <li><Link href="#about">About</Link></li>
+                        <li><Link href="https://github.com/SwarnadeepDeb/">Projects</Link></li>
+                        <li><Link to="https://github.com/SwarnadeepDeb/Blockchain-based-Online-Crowdfunding-Project">Github</Link></li>
                     </ul>
                 </div>
                 <div className="footer-section">
@@ -33,8 +34,8 @@ const Footer = () => {
                 </div>
                 <div className="footer-section">
                     <h2>Contact</h2>
-                    <p>Email: support@crowdfunding.com</p>
-                    <p>Phone: +123 456 7890</p>
+                    <p>Email: swarnadeepdebdevelopment@gmail.com</p>
+                    <p>Phone: +91-7577830760</p>
                 </div>
             </div>
             <div className="footer-bottom">

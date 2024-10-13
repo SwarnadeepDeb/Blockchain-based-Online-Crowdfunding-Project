@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { ethers, parseEther } from 'ethers';
+import CustomAlert from './CustomAlert'; 
 import './CampaignDetails.css';
-
 
 const CampaignDetails = ({ campaigns, updateCampaigns, state }) => {
     const { id } = useParams();
@@ -16,6 +16,8 @@ const CampaignDetails = ({ campaigns, updateCampaigns, state }) => {
     const [loading, setLoading] = useState(true);
     const [showWithdraw, setShowWithdraw] = useState(false);
     const [isOwner, setIsOwner] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
+    const [showAlert, setShowAlert] = useState(false);
 
     useEffect(() => {
         const fetchCampaignDetails = async () => {
@@ -35,12 +37,10 @@ const CampaignDetails = ({ campaigns, updateCampaigns, state }) => {
                 const { signer } = state;
                 const userAddress = await signer.getAddress();
 
-                // Ensure campaign.owner is defined before calling toLowerCase
                 if (campaign.owner) {
                     setIsOwner(userAddress.toLowerCase() === campaign.owner.toLowerCase());
                 }
 
-                // Check if the campaign has reached the goal or the deadline has passed
                 if (parseFloat(campaign.amountRaised) >= parseFloat(campaign.goal) || calculateDaysLeft() <= 0) {
                     setShowWithdraw(true);
                 } else {
@@ -54,9 +54,14 @@ const CampaignDetails = ({ campaigns, updateCampaigns, state }) => {
         fetchCampaignDetails();
     }, [campaign, state]);
 
+    const showCustomAlert = (message) => {
+        setAlertMessage(message);
+        setShowAlert(true);
+    };
+
     const handleDonate = async () => {
         if (!donationAmount || isNaN(donationAmount) || donationAmount <= 0) {
-            alert('Please enter a valid donation amount.');
+            showCustomAlert('Please enter a valid donation amount.');
             return;
         }
 
@@ -81,7 +86,6 @@ const CampaignDetails = ({ campaigns, updateCampaigns, state }) => {
             setDonators(updatedDonators);
             setDonationAmount('');
 
-            // Update the specific campaign in the campaigns array
             const updatedCampaign = {
                 ...campaign,
                 amountRaised: newAmountRaised,
@@ -91,19 +95,18 @@ const CampaignDetails = ({ campaigns, updateCampaigns, state }) => {
             updatedCampaigns[campaignIndex] = updatedCampaign;
             updateCampaigns(updatedCampaigns);
 
-            // Check if the campaign has reached the goal after the donation
             if (newAmountRaised >= parseFloat(campaign.goal)) {
                 setShowWithdraw(true);
             }
         } catch (error) {
             console.error('Donation failed', error);
-            alert('Donation failed. Please try again.');
+            showCustomAlert('Donation failed. Please try again.');
         }
     };
 
     const handleWithdraw = async () => {
         if (amountRaised === 0) {
-            alert('No funds available for withdrawal.');
+            showCustomAlert('No funds available for withdrawal.');
             return;
         }
 
@@ -113,13 +116,11 @@ const CampaignDetails = ({ campaigns, updateCampaigns, state }) => {
 
             await transaction.wait();
 
-            alert('Withdrawal successful.');
+            showCustomAlert('Withdrawal successful.');
 
-            // Reset the campaign state after withdrawal
             setAmountRaised(0);
             setShowWithdraw(false);
 
-            // Update the specific campaign in the campaigns array
             const updatedCampaign = {
                 ...campaign,
                 amountRaised: 0,
@@ -129,8 +130,12 @@ const CampaignDetails = ({ campaigns, updateCampaigns, state }) => {
             updateCampaigns(updatedCampaigns);
         } catch (error) {
             console.error('Withdrawal failed', error);
-            alert('Withdrawal failed. Please try again.');
+            showCustomAlert('Withdrawal failed. Please try again.');
         }
+    };
+
+    const handleCloseAlert = () => {
+        setShowAlert(false);
     };
 
     if (loading) {
@@ -142,40 +147,59 @@ const CampaignDetails = ({ campaigns, updateCampaigns, state }) => {
     }
 
     return (
-        <div className="campaign-details">
-            <h2>{campaign.title}</h2>
-            <p><strong>Creator:</strong> {campaign.owner}</p>
-            <img src={campaign.imageUrl} alt={campaign.title} className="campaign-image" />
-            <p>{campaign.description}</p>
-            <p><strong>Goal:</strong> ${campaign.goal}</p>
-            <p><strong>Amount Raised:</strong> ${amountRaised}</p>
-            <p><strong>Days Left:</strong> {daysLeft<0?0:daysLeft}</p>
-            
-            {!showWithdraw && (
-                <div className="donate-section">
+        <div className="campaign-details-container">
+            {showAlert && (
+                <CustomAlert message={alertMessage} onClose={handleCloseAlert} />
+            )}
+            <div className="campaign-left-column">
+                <div className="campaign-details-card">
+                    <div className="campaign-header">
+                        <h2>{campaign.title}</h2>
+                        <p className="campaign-owner"><strong>Creator:</strong> {campaign.owner}</p>
+                    </div>
+                    <div className="campaign-body">
+                        <div className="campaign-image-section">
+                            <img src={campaign.imageUrl} alt={campaign.title} className="campaign-image" />
+                        </div>
+                        <p>{campaign.description}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div className="campaign-right-column">
+                <div className="donate-card">
+                    <h3>Donate to this Campaign</h3>
+                    <p><strong>Goal:</strong> {campaign.goal} ETH</p>
+                    <p><strong>Amount Raised:</strong> {amountRaised} ETH</p>
+                    <p><strong>Days Left:</strong> {daysLeft < 0 ? 0 : daysLeft} days</p>
+
                     <input
                         type="number"
                         placeholder="Enter amount to donate"
                         value={donationAmount}
                         onChange={(e) => setDonationAmount(e.target.value)}
                     />
-                    <button onClick={handleDonate}>Donate</button>
-                </div>
-            )}
+                    <button onClick={handleDonate} className="donate-button">Donate</button>
 
-            {showWithdraw && isOwner && (
-                <div className="withdraw-section">
-                    <button onClick={handleWithdraw}>Withdraw</button>
+                    {showWithdraw && isOwner && (
+                        <button onClick={handleWithdraw} className="withdraw-button">Withdraw Funds</button>
+                    )}
                 </div>
-            )}
 
-            <div className="donators-section">
-                <h3>Donators</h3>
-                <ul>
-                    {donators.map((donator, index) => (
-                        <li key={index}>{donator.name}: ${donator.amount}</li>
-                    ))}
-                </ul>
+                <div className="donators-card">
+                    <h3>Donators</h3>
+                    <ul>
+                        {donators.length > 0 ? (
+                            donators.map((donator, index) => (
+                                <li key={index}>
+                                    <span>{donator.name}:</span> {donator.amount} ETH
+                                </li>
+                            ))
+                        ) : (
+                            <p>No donations yet.</p>
+                        )}
+                    </ul>
+                </div>
             </div>
         </div>
     );

@@ -1,150 +1,163 @@
-/* General Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Poppins:wght@300;500&display=swap');
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Lato', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  color: #333; 
+  line-height: 1.6;
+}
+
+.campaign-details-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; 
+  padding: 20px;
+  justify-content: center;
+  max-width: 1340px;
+  margin: auto;
+}
+
+.campaign-left-column {
+  flex: 1;
+  margin-bottom: 20px;
+  min-width: 300px; 
+}
+
+.campaign-right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; 
+  max-width: 35%;
+  margin-bottom: 20px;
+  min-width: 300px; 
+}
+
+.campaign-details-card, .donate-card, .donators-card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  width: 100%; 
+}
+
+.campaign-details-card:hover, .donate-card:hover, .donators-card:hover {
+  transform: scale(1.02);
+}
+
+.campaign-header h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #00796b; 
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.campaign-owner {
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  color: #00796b;
+  margin-bottom: 15px;
+}
+
+.campaign-body {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.campaign-image-section .campaign-image {
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.donate-card h3, .donators-card h3 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #004d40; 
+}
+
+.donate-card p, .donators-card p {
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.6;
+  margin: 5px 0;
+  color: #6d757d;
+}
+
+.donate-card input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.donate-button, .withdraw-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.donate-button {
+  background-color: #28a745; 
+  color: #fff;
+}
+
+.donate-button:hover {
+  background-color: #218838;
+}
+
+.withdraw-button {
+  background-color: #ffc107; 
+  color: #333;
+}
+
+.withdraw-button:hover {
+  background-color: #e0a800;
+}
+
+.donators-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.donators-card li {
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  margin: 5px 0;
+  color: #7f8c8d; 
+}
+
+@media screen and (max-width: 768px) {
+  .campaign-right-column, .campaign-left-column {
+      max-width: 100%;
   }
-  
-  .campaign-details {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    background-color: #f7f7f7;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  .donate-card, .donators-card {
+      margin: 20px 0;
   }
-  
-  .campaign-details h2 {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .campaign-details p {
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 15px;
-  }
-  
-  .campaign-details p strong {
-    color: #333;
-  }
-  
-  .campaign-image {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    margin: 20px 0;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Donate Section */
-  .donate-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 30px;
-  }
-  
-  .donate-section input {
-    padding: 10px;
-    width: 100%;
-    max-width: 400px;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    font-size: 1rem;
-  }
-  
-  .donate-section input:focus {
-    outline: none;
-    border-color: #ff9e44;
-  }
-  
-  .donate-section button {
-    padding: 12px 30px;
-    background-color: #ff9e44;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .donate-section button:hover {
-    background-color: #ff8233;
-  }
-  
-  /* Withdraw Section */
-  .withdraw-section {
-    text-align: center;
-    margin-top: 30px;
-  }
-  
-  .withdraw-section button {
-    padding: 12px 30px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .withdraw-section button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Donators Section */
-  .donators-section {
-    margin-top: 40px;
-  }
-  
-  .donators-section h3 {
-    font-size: 1.8rem;
-    color: #333;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #ff9e44;
-    display: inline-block;
-  }
-  
-  .donators-section ul {
-    list-style: none;
-    padding-left: 0;
-  }
-  
-  .donators-section li {
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 10px;
-  }
-  
-  .donators-section li strong {
-    color: #333;
-  }
-  
-  /* Responsive Design */
-  @media screen and (max-width: 768px) {
-    .campaign-image {
-      height: 300px;
-    }
-  
-    .campaign-details h2 {
-      font-size: 2rem;
-    }
-  
-    .donate-section input {
-      width: 100%;
-    }
-  
-    .donate-section button, .withdraw-section button {
-      width: 100%;
-      padding: 14px;
-    }
-  }
-  
+}

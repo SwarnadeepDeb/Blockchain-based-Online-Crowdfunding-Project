@@ -1,5 +1,5 @@
 import './App.css';
-import Article from './components/Article';
+import Home from './components/Home';
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from 'react';
@@ -12,6 +12,7 @@ import Dashboard from './components/Dashboard';
 function App() {
   const [connected, setConnected] = useState(false);
   const [campaigns, setCampaigns] = useState([]);
+  const [filteredCampaigns, setFilteredCampaigns] = useState([]);
   const [state, setState] = useState({
     provider: null,
     signer: null,
@@ -23,7 +24,10 @@ function App() {
 
   const updateCampaigns = (updatedCampaigns) => {
     setCampaigns(updatedCampaigns);
+    setFilteredCampaigns(updatedCampaigns)
   };
+
+
 
   useEffect(() => {
     const fetchCampaigns = async () => {
@@ -63,11 +67,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout updateSetState={updateSetState} updateConnected={updateConnected} connected={connected} updateCampaigns={updateCampaigns} />}>
-          <Route index element={<Article />} />
+        <Route path="/" element={<Layout updateSetState={updateSetState} updateConnected={updateConnected} connected={connected} updateCampaigns={updateCampaigns} campaigns={campaigns} setFilteredCampaigns={setFilteredCampaigns}/>}>
+          <Route index element={<Home updateSetState={updateSetState} updateConnected={updateConnected} connected={connected} updateCampaigns={updateCampaigns}/>} />
           <Route path="CampaignForm" element={<CampaignForm campaigns={campaigns} updateCampaigns={updateCampaigns} state={state}/>} />
           <Route path="CampaignDetails/:id" element={<CampaignDetails campaigns={campaigns} updateCampaigns={updateCampaigns} state={state}/>} />
-          <Route path="Dashboard" element={<Dashboard campaigns={campaigns} />} />
+          <Route path="Dashboard" element={<Dashboard campaigns={filteredCampaigns} state={state}/>} />
         </Route>
       </Routes>
     </BrowserRouter>

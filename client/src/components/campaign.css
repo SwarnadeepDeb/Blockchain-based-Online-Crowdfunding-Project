@@ -1,130 +1,126 @@
-/* General Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-  }
-  
+.campaign-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.campaign-form {
+  width: 100%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.campaign-form h2 {
+  color: #00796b; 
+  font-size: 24px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.campaign-form label {
+  display: block;
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.campaign-form input,
+.campaign-form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease;
+}
+
+.campaign-form input:focus,
+.campaign-form textarea:focus {
+  border-color: #00796b; /
+}
+
+.campaign-form textarea {
+  height: 100px;
+  resize: none;
+}
+
+.campaign-form button {
+  width: 100%;
+  padding: 15px;
+  background-color: #00796b; 
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.campaign-form button:hover {
+  background-color: #004d40;
+}
+
+
+.campaign-preview {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.campaign-preview h2 {
+  color: #00796b;
+  font-size: 22px;
+}
+
+.campaign-preview p {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.campaign-preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+@media (max-width: 768px) {
   .campaign-form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 50px;
-    background-color: #f7f7f7;
+    padding: 15px;
   }
-  
-  .campaign-form {
-    background-color: white;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
-  }
-  
+
   .campaign-form h2 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
+    font-size: 20px;
   }
-  
-  .campaign-form label {
-    display: block;
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 10px;
-  }
-  
+
   .campaign-form input,
   .campaign-form textarea {
-    width: 100%;
     padding: 10px;
-    margin-bottom: 20px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
   }
-  
-  .campaign-form input:focus,
-  .campaign-form textarea:focus {
-    border-color: #ff9e44;
-    outline: none;
-  }
-  
-  .campaign-form textarea {
-    height: 100px;
-    resize: none;
-  }
-  
+
   .campaign-form button {
-    width: 100%;
-    padding: 15px;
-    background-color: #ff9e44;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 14px;
+    padding: 12px;
   }
-  
-  .campaign-form button:hover {
-    background-color: #ff8233;
-  }
-  
-  /* Campaign Preview Section */
-  .campaign-preview {
-    margin-top: 40px;
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
-  }
-  
+
   .campaign-preview h2 {
-    font-size: 1.8rem;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
+    font-size: 20px;
   }
-  
+
   .campaign-preview p {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 10px;
+    font-size: 14px;
   }
-  
-  .campaign-preview p strong {
-    color: #333;
-  }
-  
-  .campaign-preview img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Responsive Design */
-  @media screen and (max-width: 768px) {
-    .campaign-form-container {
-      padding: 20px;
-    }
-  
-    .campaign-form,
-    .campaign-preview {
-      width: 100%;
-      padding: 30px;
-    }
-  
-    .campaign-form button {
-      padding: 12px;
-    }
-  }
-  
+}

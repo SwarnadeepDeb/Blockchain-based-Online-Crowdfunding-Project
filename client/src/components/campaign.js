@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { ethers , parseUnits} from 'ethers';
-import './campaign.css'
+import { ethers, parseUnits } from 'ethers';
+import CustomAlert from './CustomAlert'; 
+import './campaign.css';
 
 const CampaignForm = ({ campaigns, updateCampaigns, state }) => {
     const [formData, setFormData] = useState({
@@ -11,11 +12,10 @@ const CampaignForm = ({ campaigns, updateCampaigns, state }) => {
         amountRaised: 0,
         endDate: '',
         imageUrl: '',
-        donators: [
-            // { name: 'Donator 1', amount: 50 },
-            // { name: 'Donator 2', amount: 150 },
-        ],
+        donators: [],
     });
+    const [alertMessage, setAlertMessage] = useState('');
+    const [showAlert, setShowAlert] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -44,18 +44,24 @@ const CampaignForm = ({ campaigns, updateCampaigns, state }) => {
                 amountRaised: 0,
                 endDate: '',
                 imageUrl: '',
-                donators: [
-                    // { name: 'Donator 1', amount: 50 },
-                    // { name: 'Donator 2', amount: 150 },
-                ],
+                donators: [],
             });
+            showAlertWithMessage('Campaign created successfully!');
         } catch (error) {
             console.error('Error creating campaign:', error);
+            showAlertWithMessage('Error creating campaign. Please try again.');
         }
+    };
+
+    const showAlertWithMessage = (message) => {
+        setAlertMessage(message);
+        setShowAlert(true);
+        setTimeout(() => setShowAlert(false), 3000); 
     };
 
     return (
         <div className="campaign-form-container">
+            {showAlert && <CustomAlert message={alertMessage} onClose={() => setShowAlert(false)} />}
             <form className="campaign-form" onSubmit={handleSubmit}>
                 <h2>Create Campaign</h2>
                 <label>
@@ -122,7 +128,7 @@ const CampaignForm = ({ campaigns, updateCampaigns, state }) => {
             {formData && (
                 <div className="campaign-preview">
                     <h2>Campaign Preview</h2>
-                    <p><strong>owner:</strong> {formData.owner}</p>
+                    <p><strong>Owner:</strong> {formData.owner}</p>
                     <p><strong>Title:</strong> {formData.title}</p>
                     <p><strong>Description:</strong> {formData.description}</p>
                     <p><strong>Goal:</strong> ${formData.goal}</p>

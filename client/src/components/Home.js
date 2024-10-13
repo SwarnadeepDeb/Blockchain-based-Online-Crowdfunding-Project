@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { ethers } from "ethers";
 import { Link } from "react-router-dom";
-import logo from "./CrowdFundingLogo.jpeg";
-import "./Navbar.css";
+import "./Home.css";
 
-const Navbar = ({
+const Home = ({
   updateSetState,
   updateConnected,
   connected,
   updateCampaigns,
-  campaigns,
-  setFilteredCampaigns,
 }) => {
   const abi = [
     {
@@ -256,131 +253,90 @@ const Navbar = ({
       type: "receive",
     },
   ];
-
-  const [searchQuery, setSearchQuery] = useState("");
-
-  useEffect(() => {
-    console.log(campaigns);
-    const filtered = campaigns.filter(
-      (campaign) =>
-        (campaign.title &&
-          campaign.title.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        (campaign.description &&
-          campaign.description
-            .toLowerCase()
-            .includes(searchQuery.toLowerCase())) ||
-        (campaign.owner &&
-          campaign.owner.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        (campaign.goal &&
-          campaign.goal.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        (campaign.endDate &&
-          campaign.endDate.toLowerCase().includes(searchQuery.toLowerCase()))
-    );
-    setFilteredCampaigns(filtered.length > 0 ? filtered : campaigns);
-  }, [searchQuery, campaigns, setFilteredCampaigns]);
-
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
-
-  const connectWallet = async () => {
-    try {
-      const accounts = await window.ethereum.request({
-        method: "eth_requestAccounts",
-      });
-
-      const provider = new ethers.BrowserProvider(window.ethereum);
-      const signer = await provider.getSigner();
-      const contract = new ethers.Contract(
-        "0xdD04C2F570bE11B84a07EC1F3a2Fe168bBF9b6AD",
-        abi,
-        signer
-      );
-
-      updateSetState({ provider, signer, contract });
-      updateConnected(true);
-    } catch (error) {
-      console.error(error);
-      updateSetState({
-        provider: null,
-        signer: null,
-        contract: null,
-      });
-      updateCampaigns([]);
-      updateConnected(false);
-    }
-  };
-
-  const disconnectWallet = async () => {
-    try {
-      updateSetState({
-        provider: null,
-        signer: null,
-        contract: null,
-      });
-      updateConnected(false);
-      updateCampaigns([]);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const closeMenuOnResize = () => {
-    if (window.innerWidth > 768) {
-      setIsMenuOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", closeMenuOnResize);
-    return () => {
-      window.removeEventListener("resize", closeMenuOnResize);
+    const connectWallet = async () => {
+      try {
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+  
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const signer = await provider.getSigner();
+        const contract = new ethers.Contract(
+          "0xdD04C2F570bE11B84a07EC1F3a2Fe168bBF9b6AD",
+          abi,
+          signer
+        );
+  
+        updateSetState({ provider, signer, contract });
+        updateConnected(true);
+      } catch (error) {
+        console.error(error);
+        updateSetState({
+          provider: null,
+          signer: null,
+          contract: null,
+        });
+        updateCampaigns([]);
+        updateConnected(false);
+      }
     };
-  }, []);
-  return (
-    <nav className="navbar">
-      <div className="navbar-container">
-        <div className="navbar-logo">
-          <h1>CrowdFund</h1>
-        </div>
-        <div className="navbar-search">
-          <input
-            type="text"
-            placeholder="Search campaigns..."
-            onChange={handleSearchChange}
-          />
-        </div>
-        <div className={`navbar-menu ${isMenuOpen ? "open" : ""}`}>
-          <div className="navbar-links">
-            <Link to="/">Home</Link>
-            <Link to="/Dashboard">Dashboard</Link>
-          </div>
-          <div className="navbar-buttons">
-            <Link to="/CampaignForm">
-              <button className="btn create-btn">Create Campaign</button>
-            </Link>
+  
+    const disconnectWallet = async () => {
+      try {
+        updateSetState({
+          provider: null,
+          signer: null,
+          contract: null,
+        });
+        updateConnected(false);
+        updateCampaigns([]);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    return (
+      <div className="home-container">
+        <section className="hero">
+          <h1 className="hero-title">Empower Your Vision with Crowdfunding</h1>
+          <p className="hero-subtitle">
+            Discover, support, and fund the next big ideas on a secure blockchain-powered platform.
+          </p>
+  
+          <div className="action-btns">
             <button
               className="btn wallet-btn"
               onClick={connected ? disconnectWallet : connectWallet}
             >
               {connected ? "Disconnect Wallet" : "Connect Wallet"}
             </button>
+            <Link to="/Dashboard"><button className="btn explore-btn">Explore Campaigns</button></Link>
           </div>
-        </div>
-        <div className="navbar-hamburger" onClick={toggleMenu}>
-          <div className="bar"></div>
-          <div className="bar"></div>
-          <div className="bar"></div>
-        </div>
+        </section>
+  
+        <section className="features">
+          <h2>Why Choose Us?</h2>
+          <div className="feature-cards">
+            <div className="feature-card">
+              <i className="fas fa-lock"></i>
+              <h3>Secure Transactions</h3>
+              <p>Our blockchain technology ensures secure and transparent transactions for all users.</p>
+            </div>
+            <div className="feature-card">
+              <i className="fas fa-globe"></i>
+              <h3>Global Access</h3>
+              <p>Fund projects from anywhere in the world, and connect with a diverse community of innovators.</p>
+            </div>
+            <div className="feature-card">
+              <i className="fas fa-bullhorn"></i>
+              <h3>Amplify Your Reach</h3>
+              <p>Get your ideas in front of the right audience and turn your vision into reality.</p>
+            </div>
+          </div>
+        </section>
       </div>
-    </nav>
-  );
-};
-
-export default Navbar;
+    );
+  };
+  
+  export default Home;
+  
