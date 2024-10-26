@@ -86,19 +86,19 @@ The project is divided into several components:
 
 ## Screenshots
 
-![Screenshot 1](images/S1.png)  
+![Screenshot 1](images/S1.jpeg)  
 *Wallet Connection interface*
 
-![Screenshot 2](images/S2.png)  
+![Screenshot 2](images/S2.jpeg)  
 *Campaign Creation interface*
 
-![Screenshot 3](images/S3.png)  
+![Screenshot 3](images/S3.jpeg)  
 *Dashboard interface*
 
-![Screenshot 4](images/S4.png)  
+![Screenshot 4](images/S4.jpeg)  
 *Campaign Donation interface*
 
-![Screenshot 5](images/S5.png)  
+![Screenshot 5](images/S5.jpeg)  
 *Withdrawl interface*
 
 ## Future Enhancements
