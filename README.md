@@ -5,6 +5,15 @@
 ![Blockchain-Based Crowdfunding Project](images/ProjectImage.png)
 
 
+
+## Demo Video
+
+<div align="center">
+    <a href="https://youtu.be/vsz08NuZ6fU">
+        <img src="images/VideoThumbnail.png" alt="Collaborative Whiteboard Demo" width="80%">
+    </a>
+</div>
+
 ## Overview
 
 The **Blockchain-Based Online Crowdfunding Platform** is a decentralized application (DApp) that allows campaign creators to raise funds through secure, transparent, and tamper-proof smart contracts. Using the Ethereum blockchain, this platform ensures that contributions are handled safely and only distributed based on predefined conditions.
@@ -74,20 +83,23 @@ The project is divided into several components:
 
 - **Lock.sol**: Manages campaign creation, contribution handling, and fund distribution.
 
-## Demo
-
-You can try out the live demo [here](#) (add your demo link).
 
 ## Screenshots
 
-![Screenshot 1](images/screenshot1.png)  
-*Campaign creation interface*
+![Screenshot 1](images/S1.png)  
+*Wallet Connection interface*
 
-![Screenshot 2](images/screenshot2.png)  
+![Screenshot 2](images/S2.png)  
+*Campaign Creation interface*
+
+![Screenshot 3](images/S3.png)  
+*Dashboard interface*
+
+![Screenshot 4](images/S4.png)  
 *Campaign Donation interface*
 
-![Screenshot 2](images/screenshot3.png)  
-*withdraw interface*
+![Screenshot 5](images/S5.png)  
+*Withdrawl interface*
 
 ## Future Enhancements
 

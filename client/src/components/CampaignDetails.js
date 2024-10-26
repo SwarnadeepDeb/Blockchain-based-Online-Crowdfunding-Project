@@ -36,12 +36,10 @@ const CampaignDetails = ({ campaigns, updateCampaigns, state }) => {
 
                 const { signer } = state;
                 const userAddress = await signer.getAddress();
-
                 if (campaign.owner) {
-                    setIsOwner(userAddress.toLowerCase() === campaign.owner.toLowerCase());
+                    setIsOwner(userAddress === campaign.owner);
                 }
-
-                if (parseFloat(campaign.amountRaised) >= parseFloat(campaign.goal) || calculateDaysLeft() <= 0) {
+                if (parseFloat(campaign.amountRaised) >= parseFloat(campaign.goal) || daysLeft <= 0) {
                     setShowWithdraw(true);
                 } else {
                     setShowWithdraw(false);
@@ -98,6 +96,7 @@ const CampaignDetails = ({ campaigns, updateCampaigns, state }) => {
             if (newAmountRaised >= parseFloat(campaign.goal)) {
                 setShowWithdraw(true);
             }
+            showCustomAlert('Donation successful.');
         } catch (error) {
             console.error('Donation failed', error);
             showCustomAlert('Donation failed. Please try again.');

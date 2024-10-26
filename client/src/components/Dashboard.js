@@ -66,7 +66,8 @@ const Dashboard = ({ campaigns, state }) => {
                 style={{ backgroundImage: `url(${campaign.imageUrl})` }}
               ></div>
               <div className="campaign-content">
-                <h3>{campaign.title}</h3>
+                <h3>{campaign.title.slice(0, 13)}{campaign.title.length>13 && <span className="blue">..</span>}</h3>
+                
                 <p>
                   <strong>Creator:</strong> {campaign.owner}
                 </p>

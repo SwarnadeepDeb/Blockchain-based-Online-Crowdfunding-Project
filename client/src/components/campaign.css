@@ -47,7 +47,7 @@
 
 .campaign-form input:focus,
 .campaign-form textarea:focus {
-  border-color: #00796b; /
+  border-color: #00796b; 
 }
 
 .campaign-form textarea {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { Link } from "react-router-dom";
-import logo from "./CrowdFundingLogo.jpeg";
+// import logo from "./CrowdFundingLogo.jpeg";
 import "./Navbar.css";
 
 const Navbar = ({

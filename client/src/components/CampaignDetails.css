@@ -39,6 +39,7 @@ body {
 }
 
 .campaign-details-card, .donate-card, .donators-card {
+  word-break: break-all;
   background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;

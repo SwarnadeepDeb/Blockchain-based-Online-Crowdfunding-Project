@@ -65,7 +65,7 @@ const CampaignForm = ({ campaigns, updateCampaigns, state }) => {
             <form className="campaign-form" onSubmit={handleSubmit}>
                 <h2>Create Campaign</h2>
                 <label>
-                    Campaign owner:
+                    Campaign Owner Address:
                     <input
                         type="text"
                         name="owner"
@@ -94,7 +94,7 @@ const CampaignForm = ({ campaigns, updateCampaigns, state }) => {
                     />
                 </label>
                 <label>
-                    Goal:
+                    Goal (ETH):
                     <input
                         type="number"
                         name="goal"
